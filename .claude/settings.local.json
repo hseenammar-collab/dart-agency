@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(npm run dev:*)",
+      "Bash(del \"c:\\Users\\ASUS\\OneDrive\\Desktop\\project\\middleware.ts\")",
+      "Bash(ipconfig:*)",
+      "Bash(findstr:*)",
+      "Bash(ip addr:*)",
+      "Bash(npx next dev -H 0.0.0.0)",
+      "Bash(ls:*)",
+      "Bash(tasklist:*)",
+      "Bash(timeout /t 1)",
+      "Bash(curl:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout /t 3)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
