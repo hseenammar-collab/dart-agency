@@ -24,6 +24,11 @@ const ServicesSection = dynamic(
   { loading: () => <LoadingSection /> }
 );
 
+const PackagesSection = dynamic(
+  () => import('@/components/sections/PackagesSection').then(mod => ({ default: mod.PackagesSection })),
+  { loading: () => <LoadingSection /> }
+);
+
 const DesignSection = dynamic(
   () => import('@/components/sections/DesignSection').then(mod => ({ default: mod.DesignSection })),
   { loading: () => <LoadingSection /> }
@@ -78,6 +83,7 @@ export default function Home() {
       <HeroSection />
       <StatsSection />
       <ServicesSection />
+      <PackagesSection />
       <DesignSection />
       <AdsSection />
       <VideoSection />
