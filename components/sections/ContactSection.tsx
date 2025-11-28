@@ -271,7 +271,7 @@ function SocialButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="glass-card hover:glass-card-strong rounded-xl p-4 flex flex-col items-center gap-2 hover:scale-110 hover:shadow-3d transition-all duration-300 group"
+      className="glass-card hover:glass-card-strong rounded-xl p-4 flex flex-col items-center gap-2 hover:scale-110 hover:shadow-3d transition-all duration-300 group hover-glow"
     >
       <div className="text-primary group-hover:text-accent transition-colors">
         {icon}

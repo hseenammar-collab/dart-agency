@@ -416,7 +416,7 @@ function CampaignCard({
 }) {
   return (
     <div
-      className={`group glass-card-gold rounded-2xl p-6 hover-lift cursor-pointer transition-all duration-500 ${
+      className={`group glass-card-gold rounded-2xl p-6 hover-lift hover-glow cursor-pointer transition-all duration-500 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
       onClick={onClick}

@@ -317,7 +317,7 @@ export function DesignSection() {
             {Object.values(clients).map((client) => (
               <div
                 key={client.id}
-                className="glass-card-gold rounded-2xl p-6 text-center hover-lift group cursor-pointer"
+                className="glass-card-gold rounded-2xl p-6 text-center hover-lift hover-glow group cursor-pointer"
                 onClick={() => setFilter('all')}
               >
                 <div

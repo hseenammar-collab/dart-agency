@@ -136,6 +136,7 @@ const ServiceCard = memo(function ServiceCard({
         transition-all duration-500
         md:hover:scale-[1.03]
         md:hover:shadow-2xl
+        hover-lift hover-glow
         ${service.featured ? 'ring-2 ring-amber-500/50' : ''}
       `}>
         {/* Hover Glow Effect */}

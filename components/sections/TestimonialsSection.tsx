@@ -193,7 +193,7 @@ export function TestimonialsSection() {
             ].map((client, index) => (
               <div
                 key={index}
-                className="px-4 md:px-6 py-2 md:py-3 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-foreground/60 font-medium text-sm md:text-base hover:bg-white/10 hover:text-foreground hover:border-amber-500/30 transition-all duration-300"
+                className="px-4 md:px-6 py-2 md:py-3 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-foreground/60 font-medium text-sm md:text-base hover:bg-white/10 hover:text-foreground hover:border-amber-500/30 transition-all duration-300 hover-lift"
               >
                 {client[lang]}
               </div>

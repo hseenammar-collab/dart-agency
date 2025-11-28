@@ -97,7 +97,7 @@ const StatCard = memo(function StatCard({
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      <div className="glass-card-gold rounded-2xl p-6 md:p-8 text-center hover-lift overflow-hidden">
+      <div className="glass-card-gold rounded-2xl p-6 md:p-8 text-center hover-lift hover-glow overflow-hidden">
         {/* Background Glow - Hidden on mobile */}
         <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 hidden md:block`} />
 

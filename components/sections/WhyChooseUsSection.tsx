@@ -11,6 +11,8 @@ import {
   Shield
 } from 'lucide-react';
 import { useLanguage } from '@/lib/language-context';
+import { ScrollAnimation } from '@/components/ScrollAnimation';
+import { AnimatedCounter } from '@/components/AnimatedCounter';
 
 const reasons = [
   {
@@ -75,13 +77,6 @@ const reasons = [
   }
 ];
 
-const achievements = [
-  { value: '$425K+', label: { en: 'Ad Spend Managed', ar: 'إنفاق إعلاني مُدار' } },
-  { value: '29K+', label: { en: 'Results Delivered', ar: 'نتيجة محققة' } },
-  { value: '150+', label: { en: 'Happy Clients', ar: 'عميل سعيد' } },
-  { value: '37+', label: { en: 'Video Projects', ar: 'مشروع فيديو' } },
-];
-
 export function WhyChooseUsSection() {
   const { language, dir } = useLanguage();
   const lang = language === 'ar' ? 'ar' : 'en';
@@ -133,28 +128,53 @@ export function WhyChooseUsSection() {
 
         {/* Achievement Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-10 md:mb-16">
-          {achievements.map((achievement, index) => (
-            <div
-              key={index}
-              className="text-center p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-gold/30 transition-all duration-300"
-            >
+          <ScrollAnimation animation="fadeUp" delay={0}>
+            <div className="text-center p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-gold/30 transition-all duration-300 hover-lift">
               <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent mb-1 md:mb-2">
-                {achievement.value}
+                <AnimatedCounter end={425} prefix="$" suffix="K+" />
               </div>
               <div className="text-foreground/60 text-xs md:text-sm">
-                {achievement.label[lang]}
+                {lang === 'ar' ? 'إنفاق إعلاني مُدار' : 'Ad Spend Managed'}
               </div>
             </div>
-          ))}
+          </ScrollAnimation>
+          <ScrollAnimation animation="fadeUp" delay={100}>
+            <div className="text-center p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-gold/30 transition-all duration-300 hover-lift">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent mb-1 md:mb-2">
+                <AnimatedCounter end={29} suffix="K+" />
+              </div>
+              <div className="text-foreground/60 text-xs md:text-sm">
+                {lang === 'ar' ? 'نتيجة محققة' : 'Results Delivered'}
+              </div>
+            </div>
+          </ScrollAnimation>
+          <ScrollAnimation animation="fadeUp" delay={200}>
+            <div className="text-center p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-gold/30 transition-all duration-300 hover-lift">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent mb-1 md:mb-2">
+                <AnimatedCounter end={150} suffix="+" />
+              </div>
+              <div className="text-foreground/60 text-xs md:text-sm">
+                {lang === 'ar' ? 'عميل سعيد' : 'Happy Clients'}
+              </div>
+            </div>
+          </ScrollAnimation>
+          <ScrollAnimation animation="fadeUp" delay={300}>
+            <div className="text-center p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-gold/30 transition-all duration-300 hover-lift">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent mb-1 md:mb-2">
+                <AnimatedCounter end={37} suffix="+" />
+              </div>
+              <div className="text-foreground/60 text-xs md:text-sm">
+                {lang === 'ar' ? 'مشروع فيديو' : 'Video Projects'}
+              </div>
+            </div>
+          </ScrollAnimation>
         </div>
 
         {/* Reasons Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {reasons.map((reason, index) => (
-            <div
-              key={index}
-              className="group relative p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-amber-500/30 transition-all duration-500 md:hover:scale-105"
-            >
+            <ScrollAnimation key={index} animation="fadeUp" delay={index * 100}>
+              <div className="group relative p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-amber-500/30 transition-all duration-500 md:hover:scale-105 hover-lift hover-glow">
               {/* Icon */}
               <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br ${reason.color} flex items-center justify-center mb-4 md:mb-6 md:group-hover:scale-110 transition-transform shadow-lg`}>
                 <reason.icon className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
@@ -186,7 +206,8 @@ export function WhyChooseUsSection() {
                   {lang === 'ar' ? 'مضمون' : 'Guaranteed'}
                 </span>
               </div>
-            </div>
+              </div>
+            </ScrollAnimation>
           ))}
         </div>
 

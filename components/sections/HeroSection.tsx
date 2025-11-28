@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback, memo } from 'react';
 import { Button } from '../ui/button';
 import { useLanguage } from '@/lib/language-context';
 import { BarChart3, Palette, Play, Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
+import { ScrollAnimation } from '@/components/ScrollAnimation';
 
 // Memoized 3D card components
 const DesignCard = memo(function DesignCard({ title, dir }: { title: string; dir: string }) {
@@ -166,42 +167,50 @@ export function HeroSection() {
           {/* Hero Content */}
           <div className={`text-center mb-12 md:mb-16 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
             {/* Badge with glow effect */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card-gold mb-6 animate-pulse-glow border-glow">
-              <Sparkles className="w-4 h-4 text-gold" />
-              <span className="text-gold text-sm font-medium">{t.brand.tagline}</span>
-            </div>
+            <ScrollAnimation animation="fadeDown">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card-gold mb-6 animate-pulse-glow border-glow">
+                <Sparkles className="w-4 h-4 text-gold" />
+                <span className="text-gold text-sm font-medium">{t.brand.tagline}</span>
+              </div>
+            </ScrollAnimation>
 
             {/* Headline with neon effect - Critical for LCP */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-gradient-gold text-shadow-gold neon-text">
-                {t.hero.headline}
-              </span>
-            </h1>
+            <ScrollAnimation animation="fadeUp" delay={100}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                <span className="text-gradient-gold text-shadow-gold neon-text">
+                  {t.hero.headline}
+                </span>
+              </h1>
+            </ScrollAnimation>
 
             {/* Subheadline */}
-            <p className="text-lg sm:text-xl md:text-2xl text-foreground/70 mb-8 max-w-3xl mx-auto leading-relaxed">
-              {t.hero.subheadline}
-            </p>
+            <ScrollAnimation animation="fadeUp" delay={200}>
+              <p className="text-lg sm:text-xl md:text-2xl text-foreground/70 mb-8 max-w-3xl mx-auto leading-relaxed">
+                {t.hero.subheadline}
+              </p>
+            </ScrollAnimation>
 
             {/* CTA Buttons */}
-            <div className={`flex flex-col sm:flex-row gap-4 justify-center ${dir === 'rtl' ? 'sm:flex-row-reverse' : ''}`}>
-              <Button
-                size="lg"
-                onClick={() => scrollToSection('services')}
-                className="group text-base md:text-lg px-8 py-6 bg-gradient-to-r from-gold to-yellow-400 hover:from-gold-light hover:to-gold text-background font-bold shadow-gold hover:shadow-gold-lg transition-all duration-300 hover:-translate-y-1 rounded-full will-change-transform glow-effect"
-              >
-                <span>{t.hero.viewPortfolio}</span>
-                <Arrow className={`w-5 h-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'} group-hover:translate-x-1 transition-transform will-change-transform`} />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => scrollToSection('ads')}
-                className="text-base md:text-lg px-8 py-6 border-2 border-gold text-gold hover:bg-gold/10 shadow-gold hover:shadow-gold-lg transition-all duration-300 hover:-translate-y-1 rounded-full will-change-transform"
-              >
-                {t.hero.viewDashboard}
-              </Button>
-            </div>
+            <ScrollAnimation animation="scale" delay={400}>
+              <div className={`flex flex-col sm:flex-row gap-4 justify-center ${dir === 'rtl' ? 'sm:flex-row-reverse' : ''}`}>
+                <Button
+                  size="lg"
+                  onClick={() => scrollToSection('services')}
+                  className="group text-base md:text-lg px-8 py-6 bg-gradient-to-r from-gold to-yellow-400 hover:from-gold-light hover:to-gold text-background font-bold shadow-gold hover:shadow-gold-lg transition-all duration-300 hover:-translate-y-1 rounded-full will-change-transform glow-effect"
+                >
+                  <span>{t.hero.viewPortfolio}</span>
+                  <Arrow className={`w-5 h-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'} group-hover:translate-x-1 transition-transform will-change-transform`} />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => scrollToSection('ads')}
+                  className="text-base md:text-lg px-8 py-6 border-2 border-gold text-gold hover:bg-gold/10 shadow-gold hover:shadow-gold-lg transition-all duration-300 hover:-translate-y-1 rounded-full will-change-transform"
+                >
+                  {t.hero.viewDashboard}
+                </Button>
+              </div>
+            </ScrollAnimation>
           </div>
 
           {/* 3D Interactive Card - Enhanced 3D effect */}

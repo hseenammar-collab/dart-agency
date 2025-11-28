@@ -409,9 +409,9 @@ export function PackagesSection() {
             return (
               <div
                 key={pkg.name.en}
-                className={`relative rounded-2xl p-4 sm:p-6 transition-all duration-500 ${
+                className={`relative rounded-2xl p-4 sm:p-6 transition-all duration-500 hover-lift ${
                   pkg.popular
-                    ? `bg-gradient-to-b ${selectedIndustry.color} shadow-2xl scale-100 md:scale-105`
+                    ? `bg-gradient-to-b ${selectedIndustry.color} shadow-2xl scale-100 md:scale-105 hover-glow`
                     : 'bg-white/5 border border-white/10'
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
