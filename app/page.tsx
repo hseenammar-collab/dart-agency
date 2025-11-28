@@ -29,6 +29,11 @@ const PackagesSection = dynamic(
   { loading: () => <LoadingSection /> }
 );
 
+const PriceCalculator = dynamic(
+  () => import('@/components/sections/PriceCalculator').then(mod => ({ default: mod.PriceCalculator })),
+  { loading: () => <LoadingSection /> }
+);
+
 const DesignSection = dynamic(
   () => import('@/components/sections/DesignSection').then(mod => ({ default: mod.DesignSection })),
   { loading: () => <LoadingSection /> }
@@ -84,6 +89,7 @@ export default function Home() {
       <StatsSection />
       <ServicesSection />
       <PackagesSection />
+      <PriceCalculator />
       <DesignSection />
       <AdsSection />
       <VideoSection />

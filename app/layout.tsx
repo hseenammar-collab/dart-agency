@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Inter, Tajawal } from 'next/font/google';
 import { LanguageProvider } from '@/lib/language-context';
 import { Toaster } from '@/components/ui/toaster';
+import { PageTransition } from '@/components/PageTransition';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 
 // Optimized font loading with display swap and subset
 const inter = Inter({
@@ -123,8 +125,11 @@ export default function RootLayout({
         className={`${inter.variable} ${tajawal.variable} font-sans scroll-smooth antialiased`}
         suppressHydrationWarning
       >
+        <GoogleAnalytics />
         <LanguageProvider>
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
           <Toaster />
         </LanguageProvider>
       </body>

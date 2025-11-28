@@ -6,22 +6,61 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import { Instagram, Facebook, Send, MessageCircle } from 'lucide-react';
+import { Instagram, Facebook, Send, MessageCircle, Loader2, CheckCircle, XCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export function ContactSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
+    phone: '',
     serviceType: '',
     budget: '',
     message: '',
   });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setStatus('sending');
+
+    try {
+      // إرسال لـ EmailJS
+      await emailjs.send(
+        'service_jvi03bm',
+        'template_fncwc0g',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service_type: formData.serviceType,
+          budget: formData.budget,
+          message: formData.message,
+        },
+        'Ni0tfwAYphASCLDqP_ZQF'
+      );
+
+      setStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        serviceType: '',
+        budget: '',
+        message: '',
+      });
+
+      // Reset status after 5 seconds
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -49,6 +88,7 @@ export function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="bg-background/50 border-border focus:border-primary"
                     required
+                    disabled={status === 'sending'}
                   />
                 </div>
                 <div className="space-y-2">
@@ -59,20 +99,37 @@ export function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="bg-background/50 border-border focus:border-primary"
                     required
+                    disabled={status === 'sending'}
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium">
-                  {t.contact.form.company}
-                </label>
-                <Input
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  placeholder={t.contact.form.companyPlaceholder}
-                  className="bg-background/50 border-border focus:border-primary"
-                />
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">
+                    {t.contact.form.company}
+                  </label>
+                  <Input
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    placeholder={t.contact.form.companyPlaceholder}
+                    className="bg-background/50 border-border focus:border-primary"
+                    disabled={status === 'sending'}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">
+                    {language === 'ar' ? 'رقم الهاتف' : 'Phone Number'}
+                  </label>
+                  <Input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder={language === 'ar' ? 'اختياري' : 'Optional'}
+                    className="bg-background/50 border-border focus:border-primary"
+                    disabled={status === 'sending'}
+                  />
+                </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-6">
@@ -81,6 +138,7 @@ export function ContactSection() {
                   <Select
                     value={formData.serviceType}
                     onValueChange={(value) => setFormData({ ...formData, serviceType: value })}
+                    disabled={status === 'sending'}
                   >
                     <SelectTrigger className="bg-background/50 border-border">
                       <SelectValue />
@@ -103,6 +161,7 @@ export function ContactSection() {
                   <Select
                     value={formData.budget}
                     onValueChange={(value) => setFormData({ ...formData, budget: value })}
+                    disabled={status === 'sending'}
                   >
                     <SelectTrigger className="bg-background/50 border-border">
                       <SelectValue />
@@ -126,16 +185,44 @@ export function ContactSection() {
                   rows={6}
                   className="bg-background/50 border-border focus:border-primary resize-none"
                   required
+                  disabled={status === 'sending'}
                 />
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary hover:bg-primary/90 shadow-3d hover:shadow-3d-hover transition-all duration-300 hover:-translate-y-1"
+                disabled={status === 'sending'}
+                className="w-full bg-primary hover:bg-primary/90 shadow-3d hover:shadow-3d-hover transition-all duration-300 hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               >
-                {t.contact.form.submit}
+                {status === 'sending' ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    {language === 'ar' ? 'جاري الإرسال...' : 'Sending...'}
+                  </span>
+                ) : (
+                  t.contact.form.submit
+                )}
               </Button>
+
+              {/* Status Messages */}
+              {status === 'success' && (
+                <div className="flex items-center justify-center gap-2 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400">
+                  <CheckCircle className="w-5 h-5" />
+                  <span>
+                    {language === 'ar' ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.' : 'Message sent successfully! We\'ll contact you soon.'}
+                  </span>
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className="flex items-center justify-center gap-2 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400">
+                  <XCircle className="w-5 h-5" />
+                  <span>
+                    {language === 'ar' ? 'حدث خطأ، يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.' : 'An error occurred. Please try again or contact us via WhatsApp.'}
+                  </span>
+                </div>
+              )}
             </form>
 
             <div className="mt-12 pt-8 border-t border-border">
@@ -144,22 +231,22 @@ export function ContactSection() {
                 <SocialButton
                   icon={<Instagram className="w-5 h-5" />}
                   label={t.contact.social.instagram}
-                  href="https://instagram.com"
+                  href="https://instagram.com/dartagency.iq"
                 />
                 <SocialButton
                   icon={<Facebook className="w-5 h-5" />}
                   label={t.contact.social.facebook}
-                  href="https://facebook.com"
+                  href="https://facebook.com/dartagency.iq"
                 />
                 <SocialButton
                   icon={<Send className="w-5 h-5" />}
                   label={t.contact.social.tiktok}
-                  href="https://tiktok.com"
+                  href="https://tiktok.com/@dartagency.iq"
                 />
                 <SocialButton
                   icon={<MessageCircle className="w-5 h-5" />}
                   label={t.contact.social.whatsapp}
-                  href="https://wa.me/"
+                  href="https://wa.me/9647818812713"
                 />
               </div>
             </div>

@@ -80,6 +80,7 @@ export function Navigation() {
     { label: t.nav.home, id: 'hero' },
     { label: t.nav.services, id: 'services' },
     { label: t.nav.packages, id: 'packages' },
+    { label: t.nav.pricing, id: 'calculator' },
     { label: t.nav.design, id: 'design' },
     { label: t.nav.ads, id: 'ads' },
     { label: t.nav.video, id: 'video' },
