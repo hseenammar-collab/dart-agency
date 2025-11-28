@@ -12,6 +12,7 @@ export const translations = {
     nav: {
       home: 'Home',
       services: 'Services',
+      packages: 'Packages',
       design: 'Design Work',
       ads: 'Ad Results',
       video: 'Video Production',
@@ -204,6 +205,7 @@ export const translations = {
     nav: {
       home: 'الرئيسية',
       services: 'خدماتنا',
+      packages: 'الباقات',
       design: 'أعمال التصميم',
       ads: 'نتائج الإعلانات',
       video: 'إنتاج الفيديو',
