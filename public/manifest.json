@@ -1,0 +1,21 @@
+{
+  "name": "Dart Agency",
+  "short_name": "Dart",
+  "description": "أفضل وكالة تسويق رقمي في العراق",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#F59E0B",
+  "icons": [
+    {
+      "src": "/dart.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/dart.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

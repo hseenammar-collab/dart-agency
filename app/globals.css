@@ -52,6 +52,7 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
   }
 
   html {
@@ -63,6 +64,12 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeSpeed;
+  }
+
+  /* Optimize images and videos for performance */
+  img, video {
+    content-visibility: auto;
   }
 
   /* RTL Support */
