@@ -63,24 +63,24 @@ export function TestimonialsSection() {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section id="testimonials" className="py-24 relative overflow-hidden">
+    <section id="testimonials" className="py-12 md:py-16 lg:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-0 w-64 md:w-96 h-64 md:h-96 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-64 md:w-96 h-64 md:h-96 bg-purple-500/10 rounded-full blur-3xl hidden md:block" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-amber-500/20 px-4 py-2 rounded-full mb-6">
-            <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
-            <span className="text-amber-400 font-medium">
+        <div className="text-center mb-10 md:mb-16">
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 px-4 py-2 rounded-full mb-4 md:mb-6">
+            <Star className="w-4 h-4 md:w-5 md:h-5 text-amber-400 fill-amber-400" />
+            <span className="text-amber-400 font-medium text-sm md:text-base">
               {lang === 'ar' ? 'آراء العملاء' : 'Testimonials'}
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4">
             {lang === 'ar' ? (
               <>
                 ماذا يقول{' '}
@@ -98,7 +98,7 @@ export function TestimonialsSection() {
             )}
           </h2>
 
-          <p className="text-foreground/60 text-lg max-w-2xl mx-auto">
+          <p className="text-foreground/60 text-sm md:text-base lg:text-lg max-w-2xl mx-auto">
             {lang === 'ar'
               ? 'نفتخر بثقة عملائنا ونسعى دائماً لتحقيق نتائج تفوق توقعاتهم'
               : 'We take pride in our clients\' trust and always strive to exceed their expectations'}
@@ -107,34 +107,34 @@ export function TestimonialsSection() {
 
         {/* Testimonial Card */}
         <div className="max-w-4xl mx-auto">
-          <div className="relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+          <div className="relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-5 md:p-8 lg:p-12 shadow-2xl">
             {/* Quote Icon */}
-            <Quote className="absolute top-6 right-6 w-16 h-16 text-amber-400/20" />
+            <Quote className="absolute top-4 md:top-6 right-4 md:right-6 w-10 h-10 md:w-16 md:h-16 text-amber-400/20" />
 
             {/* Content */}
             <div className={`relative z-10 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
               {/* Stars */}
-              <div className={`flex gap-1 mb-6 ${dir === 'rtl' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`flex gap-1 mb-4 md:mb-6 ${dir === 'rtl' ? 'justify-end' : 'justify-start'}`}>
                 {[...Array(currentTestimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 text-amber-400 fill-amber-400" />
+                  <Star key={i} className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-amber-400 fill-amber-400" />
                 ))}
               </div>
 
               {/* Quote Text */}
-              <blockquote className="text-xl md:text-2xl lg:text-3xl text-foreground leading-relaxed mb-8">
+              <blockquote className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-foreground leading-relaxed mb-6 md:mb-8">
                 "{currentTestimonial.text[lang]}"
               </blockquote>
 
               {/* Author */}
-              <div className={`flex items-center gap-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-black text-2xl font-bold shadow-lg shadow-amber-500/30">
+              <div className={`flex items-center gap-3 md:gap-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
+                <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-black text-xl md:text-2xl font-bold shadow-lg shadow-amber-500/30">
                   {currentTestimonial.name[lang].charAt(0)}
                 </div>
                 <div>
-                  <div className="text-xl font-bold text-foreground">
+                  <div className="text-base md:text-lg lg:text-xl font-bold text-foreground">
                     {currentTestimonial.name[lang]}
                   </div>
-                  <div className="text-amber-400 font-medium">
+                  <div className="text-amber-400 font-medium text-sm md:text-base">
                     {currentTestimonial.role[lang]}
                   </div>
                 </div>
@@ -142,13 +142,13 @@ export function TestimonialsSection() {
             </div>
 
             {/* Navigation */}
-            <div className={`flex items-center gap-4 mt-8 pt-8 border-t border-white/10 ${dir === 'rtl' ? 'flex-row-reverse justify-end' : 'justify-start'}`}>
+            <div className={`flex items-center gap-2 md:gap-4 mt-6 md:mt-8 pt-6 md:pt-8 border-t border-white/10 ${dir === 'rtl' ? 'flex-row-reverse justify-end' : 'justify-start'}`}>
               <button
                 onClick={prevTestimonial}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all duration-300 hover:scale-110"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all duration-300 md:hover:scale-110"
                 aria-label="Previous testimonial"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
               {/* Dots */}
@@ -157,9 +157,9 @@ export function TestimonialsSection() {
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                       index === currentIndex
-                        ? 'bg-amber-400 w-8'
+                        ? 'bg-amber-400 w-6 md:w-8'
                         : 'bg-white/20 hover:bg-white/40'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
@@ -169,21 +169,21 @@ export function TestimonialsSection() {
 
               <button
                 onClick={nextTestimonial}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all duration-300 hover:scale-110"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all duration-300 md:hover:scale-110"
                 aria-label="Next testimonial"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
               </button>
             </div>
           </div>
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-16 text-center">
-          <p className="text-foreground/50 text-sm mb-6">
+        <div className="mt-10 md:mt-16 text-center">
+          <p className="text-foreground/50 text-xs md:text-sm mb-4 md:mb-6">
             {lang === 'ar' ? 'موثوق من قبل أكثر من 150+ عميل في العراق' : 'Trusted by 150+ clients across Iraq'}
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-4">
+          <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4">
             {[
               { en: 'Zaitona', ar: 'زيتونة' },
               { en: 'Eva', ar: 'إيفا' },
@@ -193,7 +193,7 @@ export function TestimonialsSection() {
             ].map((client, index) => (
               <div
                 key={index}
-                className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground/60 font-medium hover:bg-white/10 hover:text-foreground hover:border-amber-500/30 transition-all duration-300"
+                className="px-4 md:px-6 py-2 md:py-3 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-foreground/60 font-medium text-sm md:text-base hover:bg-white/10 hover:text-foreground hover:border-amber-500/30 transition-all duration-300"
               >
                 {client[lang]}
               </div>

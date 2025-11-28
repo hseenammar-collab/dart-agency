@@ -93,41 +93,41 @@ export function AdsSection() {
   };
 
   return (
-    <section id="ads" className="py-24 relative overflow-hidden" ref={sectionRef}>
+    <section id="ads" className="py-12 md:py-16 lg:py-24 relative overflow-hidden" ref={sectionRef}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-      <div className="absolute inset-0 particles-bg opacity-20" />
+      <div className="absolute inset-0 particles-bg opacity-20 hidden md:block" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
           <span className="inline-block px-4 py-2 rounded-full glass-card-gold text-gold text-sm font-medium mb-4">
             {language === 'ar' ? 'نتائج حقيقية' : 'Real Results'}
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6">
             <span className="text-gradient-gold">{t.ads.title}</span>
           </h2>
-          <p className="text-lg text-foreground/70 leading-relaxed">
+          <p className="text-base md:text-lg text-foreground/70 leading-relaxed">
             {t.ads.description}
           </p>
         </div>
 
         {/* Total Stats Hero */}
-        <div className="glass-card-gold rounded-3xl p-8 mb-12 relative overflow-hidden">
+        <div className="glass-card-gold rounded-2xl md:rounded-3xl p-4 md:p-8 mb-8 md:mb-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/5 rounded-full blur-3xl" />
 
           <div className="relative z-10">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-foreground mb-2">
+            <div className="text-center mb-4 md:mb-8">
+              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                 {language === 'ar' ? 'الإحصائيات الإجمالية' : 'Total Campaign Statistics'}
               </h3>
-              <p className="text-foreground/60">
+              <p className="text-sm md:text-base text-foreground/60">
                 {language === 'ar' ? 'نتائج حقيقية من حملات Meta Ads' : 'Real results from Meta Ads campaigns'}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
               <TotalStatCard
                 icon={<DollarSign className="w-7 h-7" />}
                 value={`$${totalStats.totalSpend.toLocaleString()}+`}
@@ -219,7 +219,7 @@ export function AdsSection() {
         )}
 
         {/* Campaigns Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredCampaigns.map((campaign, index) => (
             <CampaignCard
               key={campaign.id}
@@ -331,11 +331,11 @@ function TotalStatCard({
 }) {
   return (
     <div className="text-center group">
-      <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${gradient} p-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+      <div className={`w-12 h-12 md:w-16 md:h-16 mx-auto mb-2 md:mb-4 rounded-xl md:rounded-2xl bg-gradient-to-br ${gradient} p-3 md:p-4 shadow-lg md:group-hover:scale-110 transition-transform duration-300`}>
         <div className="text-white">{icon}</div>
       </div>
-      <div className="text-3xl md:text-4xl font-bold text-foreground mb-1">{value}</div>
-      <div className="text-sm text-foreground/60">{label}</div>
+      <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-1">{value}</div>
+      <div className="text-xs md:text-sm text-foreground/60">{label}</div>
     </div>
   );
 }

@@ -59,24 +59,24 @@ export function FAQSection() {
   }, []);
 
   return (
-    <section id="faq" className="py-24 relative overflow-hidden">
+    <section id="faq" className="py-12 md:py-16 lg:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 left-0 w-64 md:w-96 h-64 md:h-96 bg-amber-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-0 w-64 md:w-96 h-64 md:h-96 bg-purple-500/5 rounded-full blur-3xl hidden md:block" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-amber-500/20 px-4 py-2 rounded-full mb-6">
-            <HelpCircle className="w-5 h-5 text-amber-400" />
-            <span className="text-amber-400 font-medium">
+        <div className="text-center mb-10 md:mb-16">
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 px-4 py-2 rounded-full mb-4 md:mb-6">
+            <HelpCircle className="w-4 h-4 md:w-5 md:h-5 text-amber-400" />
+            <span className="text-amber-400 font-medium text-sm md:text-base">
               {lang === 'ar' ? 'أسئلة شائعة' : 'FAQ'}
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4">
             {lang === 'ar' ? (
               <>
                 الأسئلة{' '}
@@ -94,7 +94,7 @@ export function FAQSection() {
             )}
           </h2>
 
-          <p className="text-foreground/60 text-lg max-w-2xl mx-auto">
+          <p className="text-foreground/60 text-sm md:text-base lg:text-lg max-w-2xl mx-auto">
             {lang === 'ar'
               ? 'إجابات على أكثر الأسئلة شيوعاً حول خدماتنا'
               : 'Answers to the most common questions about our services'}
@@ -102,11 +102,11 @@ export function FAQSection() {
         </div>
 
         {/* FAQ List */}
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="max-w-full md:max-w-2xl lg:max-w-3xl mx-auto space-y-3 md:space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`rounded-2xl border transition-all duration-300 ${
+              className={`rounded-xl md:rounded-2xl border transition-all duration-300 ${
                 openIndex === index
                   ? 'bg-gradient-to-br from-amber-500/10 to-yellow-500/5 border-amber-500/30 shadow-lg shadow-amber-500/10'
                   : 'bg-white/5 border-white/10 hover:border-white/20'
@@ -114,20 +114,20 @@ export function FAQSection() {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className={`w-full flex items-center justify-between p-6 ${dir === 'rtl' ? 'flex-row-reverse text-right' : 'text-left'}`}
+                className={`w-full flex items-center justify-between p-4 md:p-6 gap-3 ${dir === 'rtl' ? 'flex-row-reverse text-right' : 'text-left'}`}
               >
-                <span className={`font-semibold text-lg ${openIndex === index ? 'text-amber-400' : 'text-foreground'}`}>
+                <span className={`font-semibold text-sm md:text-base lg:text-lg ${openIndex === index ? 'text-amber-400' : 'text-foreground'}`}>
                   {faq.q[lang]}
                 </span>
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                   openIndex === index
                     ? 'bg-amber-500 text-black rotate-0'
                     : 'bg-white/10 text-foreground'
                 }`}>
                   {openIndex === index ? (
-                    <Minus className="w-5 h-5" />
+                    <Minus className="w-4 h-4 md:w-5 md:h-5" />
                   ) : (
-                    <Plus className="w-5 h-5" />
+                    <Plus className="w-4 h-4 md:w-5 md:h-5" />
                   )}
                 </div>
               </button>
@@ -137,7 +137,7 @@ export function FAQSection() {
                   openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className={`px-6 pb-6 text-foreground/70 leading-relaxed ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                <div className={`px-4 md:px-6 pb-4 md:pb-6 text-foreground/70 leading-relaxed text-sm md:text-base ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
                   {faq.a[lang]}
                 </div>
               </div>
@@ -146,13 +146,13 @@ export function FAQSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
-          <p className="text-foreground/50 mb-4">
+        <div className="text-center mt-8 md:mt-12">
+          <p className="text-foreground/50 mb-3 md:mb-4 text-sm md:text-base">
             {lang === 'ar' ? 'لم تجد إجابة لسؤالك؟' : "Didn't find your answer?"}
           </p>
           <a
             href="#contact"
-            className={`inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-medium transition-colors ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}
+            className={`inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-medium transition-colors text-sm md:text-base ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}
           >
             {lang === 'ar' ? 'تواصل معنا مباشرة' : 'Contact us directly'}
             <span className={dir === 'rtl' ? 'rotate-180' : ''}>→</span>
