@@ -79,14 +79,9 @@ export function Navigation() {
   const navItems = [
     { label: t.nav.home, id: 'hero' },
     { label: t.nav.services, id: 'services' },
+    { label: language === 'ar' ? 'أعمالنا' : 'Portfolio', id: 'portfolio' },
     { label: t.nav.packages, id: 'packages' },
-    { label: t.nav.pricing, id: 'calculator' },
-    { label: t.nav.design, id: 'design' },
-    { label: t.nav.ads, id: 'ads' },
-    { label: t.nav.video, id: 'video' },
-    { label: t.nav.automation, id: 'automation' },
-    { label: t.nav.cases, id: 'cases' },
-    { label: t.nav.whyUs, id: 'why-us' },
+    { label: language === 'ar' ? 'من نحن' : 'About', id: 'about' },
     { label: t.nav.contact, id: 'contact' },
   ];
 

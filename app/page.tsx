@@ -24,6 +24,11 @@ const ServicesSection = dynamic(
   { loading: () => <LoadingSection /> }
 );
 
+const PortfolioSection = dynamic(
+  () => import('@/components/sections/PortfolioSection').then(mod => ({ default: mod.PortfolioSection })),
+  { loading: () => <LoadingSection /> }
+);
+
 const PackagesSection = dynamic(
   () => import('@/components/sections/PackagesSection').then(mod => ({ default: mod.PackagesSection })),
   { loading: () => <LoadingSection /> }
@@ -34,43 +39,8 @@ const PriceCalculator = dynamic(
   { loading: () => <LoadingSection /> }
 );
 
-const DesignSection = dynamic(
-  () => import('@/components/sections/DesignSection').then(mod => ({ default: mod.DesignSection })),
-  { loading: () => <LoadingSection /> }
-);
-
-const AdsSection = dynamic(
-  () => import('@/components/sections/AdsSection').then(mod => ({ default: mod.AdsSection })),
-  { loading: () => <LoadingSection /> }
-);
-
-const VideoSection = dynamic(
-  () => import('@/components/sections/VideoSection').then(mod => ({ default: mod.VideoSection })),
-  { loading: () => <LoadingSection /> }
-);
-
-const AutomationSection = dynamic(
-  () => import('@/components/sections/AutomationSection').then(mod => ({ default: mod.AutomationSection })),
-  { loading: () => <LoadingSection /> }
-);
-
-const CaseStudiesSection = dynamic(
-  () => import('@/components/sections/CaseStudiesSection').then(mod => ({ default: mod.CaseStudiesSection })),
-  { loading: () => <LoadingSection /> }
-);
-
-const WhyChooseUsSection = dynamic(
-  () => import('@/components/sections/WhyChooseUsSection').then(mod => ({ default: mod.WhyChooseUsSection })),
-  { loading: () => <LoadingSection /> }
-);
-
-const TestimonialsSection = dynamic(
-  () => import('@/components/sections/TestimonialsSection').then(mod => ({ default: mod.TestimonialsSection })),
-  { loading: () => <LoadingSection /> }
-);
-
-const FAQSection = dynamic(
-  () => import('@/components/sections/FAQSection').then(mod => ({ default: mod.FAQSection })),
+const AboutSection = dynamic(
+  () => import('@/components/sections/AboutSection').then(mod => ({ default: mod.AboutSection })),
   { loading: () => <LoadingSection /> }
 );
 
@@ -88,16 +58,10 @@ export default function Home() {
       <HeroSection />
       <StatsSection />
       <ServicesSection />
+      <PortfolioSection />
       <PackagesSection />
       <PriceCalculator />
-      <DesignSection />
-      <AdsSection />
-      <VideoSection />
-      <AutomationSection />
-      <CaseStudiesSection />
-      <WhyChooseUsSection />
-      <TestimonialsSection />
-      <FAQSection />
+      <AboutSection />
       <ContactSection />
       <Footer />
       <FloatingWhatsApp />
