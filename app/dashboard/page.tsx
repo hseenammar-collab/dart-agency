@@ -1,16 +1,50 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
-import { TrendingUp, DollarSign, MessageSquare, Target, BarChart3 } from 'lucide-react';
+import { TrendingUp, DollarSign, MessageSquare, Target, BarChart3, LogOut } from 'lucide-react';
+import { PerformanceChart } from '@/components/dashboard/PerformanceChart';
+import { ROASChart } from '@/components/dashboard/ROASChart';
 
 export default function DashboardPage() {
+  const [clientName, setClientName] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+
   const [stats, setStats] = useState({
     totalSpend: 1250,
     totalResults: 347,
     roas: 4.2,
     activeCampaigns: 3
   });
+
+  useEffect(() => {
+    const name = localStorage.getItem('clientName');
+    const code = localStorage.getItem('clientCode');
+
+    if (!name || !code) {
+      router.push('/dashboard/login');
+      return;
+    }
+
+    setClientName(name);
+    setIsLoading(false);
+  }, [router]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('clientCode');
+    localStorage.removeItem('clientName');
+    router.push('/dashboard/login');
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -19,11 +53,20 @@ export default function DashboardPage() {
         <div className="container mx-auto flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-amber-400">Dart Dashboard</h1>
-            <p className="text-gray-400">مرحباً، أحمد</p>
+            <p className="text-gray-400">مرحباً، {clientName}</p>
           </div>
-          <a href="/" className="text-gray-400 hover:text-white">
-            ← العودة للموقع
-          </a>
+          <div className="flex items-center gap-4">
+            <a href="/" className="text-gray-400 hover:text-white">
+              ← العودة للموقع
+            </a>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+              تسجيل خروج
+            </button>
+          </div>
         </div>
       </header>
 
@@ -77,6 +120,12 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <PerformanceChart />
+          <ROASChart />
         </div>
 
         {/* Campaigns Table */}
