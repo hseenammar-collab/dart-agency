@@ -77,12 +77,11 @@ export function Navigation() {
   }, []);
 
   const navItems = [
-    { label: t.nav.home, id: 'hero' },
-    { label: t.nav.services, id: 'services' },
+    { label: language === 'ar' ? 'الرئيسية' : 'Home', id: 'hero' },
+    { label: language === 'ar' ? 'خدماتنا' : 'Services', id: 'services' },
     { label: language === 'ar' ? 'أعمالنا' : 'Portfolio', id: 'portfolio' },
-    { label: t.nav.packages, id: 'packages' },
-    { label: language === 'ar' ? 'من نحن' : 'About', id: 'about' },
-    { label: t.nav.contact, id: 'contact' },
+    { label: language === 'ar' ? 'لماذا نحن' : 'About', id: 'about' },
+    { label: language === 'ar' ? 'تواصل' : 'Contact', id: 'contact' },
   ];
 
   return (
