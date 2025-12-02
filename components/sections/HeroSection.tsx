@@ -3,6 +3,7 @@
 import { useLanguage } from '@/lib/language-context';
 import { ArrowLeft, ArrowRight, Sparkles, Play } from 'lucide-react';
 import { ScrollAnimation } from '@/components/ScrollAnimation';
+import Image from 'next/image';
 
 export function HeroSection() {
   const { language } = useLanguage();
@@ -12,12 +13,9 @@ export function HeroSection() {
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        {/* Gradient Orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-3xl" />
-
-        {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(245,158,11,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(245,158,11,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" />
       </div>
 
@@ -63,8 +61,8 @@ export function HeroSection() {
             <ScrollAnimation animation="fadeUp" delay={200}>
               <p className="text-gray-400 text-lg md:text-xl mb-8 max-w-xl mx-auto lg:mx-0">
                 {isRTL
-                  ? 'دارت للتسويق الرقمي تقدم نتائج استثنائية من خلال التسويق الرقمي الاستراتيجي، والتصميم المذهل، والحملات الإعلانية المبنية على البيانات.'
-                  : 'Dart delivers exceptional results through strategic digital marketing, stunning design, and data-driven advertising campaigns.'}
+                  ? 'نتائج استثنائية من خلال التسويق الاستراتيجي والتصميم المذهل والحملات المبنية على البيانات.'
+                  : 'Exceptional results through strategic marketing, stunning design, and data-driven campaigns.'}
               </p>
             </ScrollAnimation>
 
@@ -81,101 +79,127 @@ export function HeroSection() {
                   href="#services"
                   className="group inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all"
                 >
-                  {isRTL ? 'شاهد أعمالنا' : 'Our Work'}
+                  {isRTL ? 'خدماتنا' : 'Our Services'}
                   {isRTL ? <ArrowLeft className="w-5 h-5" /> : <ArrowRight className="w-5 h-5" />}
                 </a>
               </div>
             </ScrollAnimation>
-
-            {/* Stats Mini */}
-            <ScrollAnimation animation="fadeUp" delay={400}>
-              <div className="flex justify-center lg:justify-start gap-8 mt-10 pt-10 border-t border-white/10">
-                <div>
-                  <p className="text-3xl font-black text-amber-400">$425K+</p>
-                  <p className="text-sm text-gray-400">{isRTL ? 'إنفاق مُدار' : 'Ad Spend'}</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-black text-amber-400">150+</p>
-                  <p className="text-sm text-gray-400">{isRTL ? 'عميل سعيد' : 'Happy Clients'}</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-black text-amber-400">6.6x</p>
-                  <p className="text-sm text-gray-400">{isRTL ? 'متوسط ROAS' : 'Avg ROAS'}</p>
-                </div>
-              </div>
-            </ScrollAnimation>
           </div>
 
-          {/* 3D Element */}
-          <div className="relative hidden lg:flex items-center justify-center">
-            <div className="relative w-[500px] h-[500px]">
-              {/* Main 3D Cube */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="cube-container">
-                  <div className="cube">
-                    <div className="cube-face cube-front">
-                      <div className="flex flex-col items-center justify-center h-full">
-                        <span className="text-6xl mb-2">🎯</span>
-                        <span className="text-black font-bold">Targeting</span>
-                      </div>
-                    </div>
-                    <div className="cube-face cube-back">
-                      <div className="flex flex-col items-center justify-center h-full">
-                        <span className="text-6xl mb-2">📈</span>
-                        <span className="text-black font-bold">Growth</span>
-                      </div>
-                    </div>
-                    <div className="cube-face cube-right">
-                      <div className="flex flex-col items-center justify-center h-full">
-                        <span className="text-6xl mb-2">💡</span>
-                        <span className="text-black font-bold">Creative</span>
-                      </div>
-                    </div>
-                    <div className="cube-face cube-left">
-                      <div className="flex flex-col items-center justify-center h-full">
-                        <span className="text-6xl mb-2">🚀</span>
-                        <span className="text-black font-bold">Results</span>
-                      </div>
-                    </div>
-                    <div className="cube-face cube-top">
-                      <div className="flex flex-col items-center justify-center h-full">
-                        <span className="text-6xl mb-2">⚡</span>
-                        <span className="text-black font-bold">Speed</span>
-                      </div>
-                    </div>
-                    <div className="cube-face cube-bottom">
-                      <div className="flex flex-col items-center justify-center h-full">
-                        <span className="text-6xl mb-2">🤖</span>
-                        <span className="text-black font-bold">AI</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {/* 3D Icons Grid */}
+          <div className="relative hidden lg:block">
+            <div className="relative w-[500px] h-[500px] mx-auto">
+              {/* Center Rocket - Main Icon */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 animate-float z-10">
+                <Image
+                  src="/3d-icons/rocket.png"
+                  alt="Growth"
+                  width={200}
+                  height={200}
+                  className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(245,158,11,0.5)]"
+                />
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute top-10 right-10 w-20 h-20 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl shadow-lg shadow-amber-500/50 flex items-center justify-center animate-float">
-                <span className="text-3xl">📱</span>
-              </div>
-              <div className="absolute bottom-20 left-10 w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl shadow-lg shadow-green-500/50 flex items-center justify-center animate-float delay-500">
-                <span className="text-2xl">💰</span>
-              </div>
-              <div className="absolute top-1/2 right-0 w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-lg shadow-lg shadow-blue-500/50 flex items-center justify-center animate-float delay-1000">
-                <span className="text-xl">📊</span>
+              {/* Target - Top Left */}
+              <div className="absolute top-0 left-10 w-28 h-28 animate-float" style={{ animationDelay: '0.5s' }}>
+                <Image
+                  src="/3d-icons/target.png"
+                  alt="Targeting"
+                  width={120}
+                  height={120}
+                  className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                />
               </div>
 
-              {/* Glowing Ring */}
-              <div className="absolute inset-0 rounded-full border-2 border-amber-500/20 animate-ping-slow" />
+              {/* Chart - Top Right */}
+              <div className="absolute top-5 right-5 w-32 h-32 animate-float" style={{ animationDelay: '1s' }}>
+                <Image
+                  src="/3d-icons/chart.png"
+                  alt="Analytics"
+                  width={130}
+                  height={130}
+                  className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                />
+              </div>
+
+              {/* Headset - Middle Right */}
+              <div className="absolute top-1/2 -translate-y-1/2 right-0 w-28 h-28 animate-float" style={{ animationDelay: '1.5s' }}>
+                <Image
+                  src="/3d-icons/headset.png"
+                  alt="Support"
+                  width={120}
+                  height={120}
+                  className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                />
+              </div>
+
+              {/* Palette - Bottom Right */}
+              <div className="absolute bottom-10 right-10 w-28 h-28 animate-float" style={{ animationDelay: '2s' }}>
+                <Image
+                  src="/3d-icons/palette.png"
+                  alt="Design"
+                  width={120}
+                  height={120}
+                  className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                />
+              </div>
+
+              {/* Video - Bottom Left */}
+              <div className="absolute bottom-5 left-5 w-28 h-28 animate-float" style={{ animationDelay: '2.5s' }}>
+                <Image
+                  src="/3d-icons/video.png"
+                  alt="Video"
+                  width={120}
+                  height={120}
+                  className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                />
+              </div>
+
+              {/* Shield - Middle Left */}
+              <div className="absolute top-1/2 -translate-y-1/2 left-0 w-24 h-24 animate-float" style={{ animationDelay: '3s' }}>
+                <Image
+                  src="/3d-icons/shield.png"
+                  alt="Security"
+                  width={100}
+                  height={100}
+                  className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                />
+              </div>
+
+              {/* Glowing Rings */}
+              <div className="absolute inset-0 rounded-full border border-amber-500/20 animate-ping-slow" />
               <div className="absolute inset-10 rounded-full border border-amber-500/10 animate-spin-slow" />
             </div>
           </div>
         </div>
+
+        {/* Stats */}
+        <ScrollAnimation animation="fadeUp" delay={400}>
+          <div className="flex justify-center gap-8 md:gap-16 mt-16 pt-8 border-t border-white/10">
+            <div className="text-center">
+              <p className="text-3xl md:text-4xl font-black text-amber-400">$425K+</p>
+              <p className="text-sm text-gray-400">{isRTL ? 'إنفاق مُدار' : 'Ad Spend'}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl md:text-4xl font-black text-amber-400">150+</p>
+              <p className="text-sm text-gray-400">{isRTL ? 'عميل سعيد' : 'Happy Clients'}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl md:text-4xl font-black text-amber-400">6.6x</p>
+              <p className="text-sm text-gray-400">{isRTL ? 'متوسط ROAS' : 'Avg ROAS'}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl md:text-4xl font-black text-amber-400">29K+</p>
+              <p className="text-sm text-gray-400">{isRTL ? 'نتائج' : 'Results'}</p>
+            </div>
+          </div>
+        </ScrollAnimation>
       </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
-          <div className="w-1 h-3 bg-amber-400 rounded-full animate-scroll" />
+          <div className="w-1 h-3 bg-amber-400 rounded-full" />
         </div>
       </div>
     </section>
